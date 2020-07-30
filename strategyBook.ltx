@@ -1,4 +1,24 @@
+% uft-8
+
+% 院試攻略資料PDF のソースコード
+% アルファベットの後ろにスペースが入っていることがありますがスルーしてください．
+% Neovim でdeoplete という補完プラグインを使うと，英語+日本語がそのまま
+% 補完候補に上がるのでそれを避けています．
+% ．．．っえみんなVScode だって！！？
+
+% 拡張子がltx なのもNeovim 使うためです笑
+
+
+% ドキュメントクラスはjsreport
+% オプションは自由につけてもらってOK です．
+
 \documentclass[dvipdfmx]{jsreport}
+
+% パッケージ群
+% 後から何を加えてくれてもOK です！！！
+% 注意としては古いlatex ではdocmute パッケージが備わっていないことがあります．
+% 貸与されるMac book ではそのようなことはないと思いますが，パッケージがないという
+% エラーが発生したときは各自のPC でパッケージを入れてください．
 \usepackage{graphics}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -9,13 +29,20 @@
 \usepackage{url}
 \usepackage{txfonts}
 \usepackage{color}
+
 \usepackage{docmute}
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\usetikzlibrary{intersections}
+
+% 以下2行は目次出力のパッケージなのでノータッチ！
 \usepackage[dvipdfmx]{hyperref}
 \usepackage{pxjahyper}
 
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+
+
+
+% 日付は指定しない
 \title{院試攻略本}
 \author{}
 
@@ -28,5 +55,38 @@
 	ものです．さらっと読んで学習の指針にしてください．
 
 	新しい内容を加筆してくださるときは，「加筆の手引き」を読んでください．
+
+	% 目次出力のコマンド
+	% ノータッチでお願いします！！！
+	\tableofcontents
+
+	% 加筆の手引きの内容======================
+
+	% part は科目単位
+	% chapter は単元単位とか問題形式単位というふんわりした分け方でお願い！
+	% part chapter の分ける部分まではこのファイルで，
+	% そこからの内容を個別のtex ファイルで書いていこう
+
+	% 個別tex ファイルはjsarticle で
+	% part で書いている A3, B1 とかの分類に従ってディレクトリに分けて保存
+	% もし画像を差し込むときはimg ディレクトリに保存の上
+	% \includegraphics[sizeOfFigure]{./img/nameOfFigure}
+	% で読み込むようにしてください！
+
+	% =======================================
+
+	\part{A2：数学}
+	\chapter{フーリエ変換}
+	A2 の(1)はフーリエ変換・逆フーリエ変換を用いた数式の計算を問う問題が
+	出題されている．
+	
+	\input{./A2/fourier_1.ltx}
+	
+	\chapter{微分方程式}
+	
+	\chapter{複素関数論}
+	
+	
+	
 
 \end{document}
