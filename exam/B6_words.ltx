@@ -1,0 +1,68 @@
+\documentclass[dvipdfmx, 14pt]{jsarticle}
+\usepackage{graphics}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{ascmac}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{txfonts}
+\usepackage{color}
+\usepackage{docmute}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+
+\title{B6 語句予想}
+\author{近藤 綜太}
+\date{}
+\begin{document}
+\maketitle
+	過去問でさらえてなさそうな語句
+
+	以下の語句についてその意味や効果などを説明せよ．
+	\begin{itemize}
+		\item ディスパッチ
+		\item 横取り
+		\item 仮想記憶
+		\item プリエンプティブ・ノンプリエンプティブ
+		\item HDD のレイテンシに関わる4つの要素(語句ではないかも笑)
+	\end{itemize}
+
+
+	\vspace{3em}
+	{\tiny プロセススケジュールの範囲って出てないけど，どうなんやろか？}
+
+	\newpage
+
+	\begin{description}
+		\item[ディスパッチ] プロセスの消滅や待ち状態・実行可能状態への
+			移行などによりCPU で処理されるプロセスがなくなった場合に，
+			実行可能状態にあるプロセスの1つを実行状態に移行すること．
+		\item[横取り] 実行可能状態にプロセスがあるとき，所定の時間後に
+			タイマー割り込みを発生させ，実行されてたプロセスを実行可能状態に
+			移行すること．
+			これにより，特定のプロセスがCPU を占有することを防ぐ．
+		\item[仮想記憶] 主記憶を2次記憶にとっての「キャッシュ」のように
+			使用する技法．主記憶の容量より大きなアドレス空間をユーザに
+			提供することで，主記憶の容量の異なる計算機間でのソフトウェアの
+			移植性を確保するなどする．
+		\item プロセススケジューリングの代表的な方式として SPTF というものがある．
+			これは経験的な推定により得るプロセスの処理時間に基づいて，
+			処理時間の短いプロセスから優先して処理をする．
+			
+			プリエンプティブとは，新たに実行可能状態になったプロセスの処理時間が
+			実行中のプロセスの処理時間より短いと推定された場合に横取りを発生させる
+			実装であり，ノンプリエンプティブとは一度実行状態となったプロセスに
+			対して横取りは発生しない実装である．
+		\item[HDD のレイテンシ] HDD のレイテンシは以下の4つの要素が関わる．
+			\begin{itemize}
+				\item 制御回路のオーバヘッド
+				\item シーク時間
+				\item 回転時間
+				\item データ転送時間
+			\end{itemize}
+	\end{description}
+	
+\end{document}

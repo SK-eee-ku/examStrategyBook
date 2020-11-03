@@ -1,0 +1,206 @@
+\documentclass[dvipdfmx]{jsarticle}
+\usepackage{graphics}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{ascmac}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{txfonts}
+\usepackage{color}
+\usepackage{docmute}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+
+\usepackage{qexam}
+
+\title{A-3予想問題}
+\author{近藤 綜太}
+
+\begin{document}
+	\maketitle
+	考えられる最悪なパターンの問題を作りました．
+
+	\question{問1}
+	真空の誘電率を $\varepsilon_0$とする．
+
+	\begin{qparts}
+		\qpart 図\ref{tikz1}
+		のように $+q, -q$の電荷がz 軸上 $z=\delta/2, -\delta/2$に存在している．
+		z 軸となす角が $\theta$，原点からの距離が $r$である点 P をとる．
+		$\delta\ll r$である．
+
+
+		\begin{figure}[htbp]
+			\centering
+			\begin{tikzpicture}[scale=1]\large
+				\draw[semithick, ->] (0, -2)--(0, 4)node[above]{z};
+				\fill[] (0, 1)node[left]{$+q$} circle (2pt);
+				\fill[] (0, -1)node[left]{$-q$} circle (2pt);
+				\draw[semithick, dashed] (0, 0)node[left]{O}--(30:4);
+				\fill[red] (30:4)node[right]{P} circle (2pt);
+				\draw[thin] (30:2) arc[radius=2, start angle=30, end angle=90];
+				\node[above] at (60:2){$\theta$};
+				\node[right] at(0, 1){$\delta/2$};
+				\node[right] at(0, -1){$-\delta/2$};
+			\end{tikzpicture}
+			\caption{問題設定}
+		\label{tikz1}
+		\end{figure}
+		
+		\begin{qlist}
+			\qitem 点 P における電位を球体座標系で求めよ．
+			\qitem 点 P における電界を球体座標系で求めよ．
+			球体座標における $\nabla$演算子は次のようになっている．
+			\[\left( \frac{\partial}{\partial r}, \ 
+			\frac{1}{r} \frac{\partial}{\partial\theta}, \ 
+			\frac{1}{r\sin\theta} \frac{\partial}{\partial \phi}\right)\]
+			\qitem 向きを $-q$の電荷から $+q$の方向，
+				大きさを $m=q\delta$とするベクトル$\bm{m}$を
+				定義し，点 Pにおける電界，電位を示せ．
+				また，このベクトルの名称を答えよ．
+		\end{qlist}
+
+		\newpage
+		\qpart 図\ref{tizk2}
+		のように一様電界 $\bm{E}$(大きさ $E_0$)中に半径 $a$の導体球を置く．
+		導体球の中心を原点とし，電界の方向に軸をとる．
+		軸とのなす角を $\theta$，原点からの距離を $r(>a)$である点を Q とする．
+
+		\begin{figure}[htbp]
+			\centering
+			\begin{tikzpicture}[scale=1]\large
+				\draw[thick, ->] (-5, 5)--node[above]{$\bm{E}$}(-3, 5);
+				\draw[thick] (0, 0)circle[radius=3];
+				\draw[semithick, ->] (0, 0)--(4, 0);
+				\draw[semithick, dashed] (0, 0)--(40:5);
+				\draw[semithick] (1, 0)arc[radius=1, start angle=0, delta angle=40];
+				\node[right] at(20:1){$\theta$};
+				\fill[red] (40:5)node[right]{Q} circle(2pt);
+				\node[below right] at(3, 0){$a$};
+			\end{tikzpicture}
+			\caption{問題設定}
+			\label{tizk2}
+		\end{figure}
+
+		\begin{qlist}
+			\qitem 導体球を取り除き，適当な影像双極子 $\bm{m}$を与えることで
+			導体外の電界を再現せよ．
+			\qitem 点 Q における電界を球体座標系で求めよ．
+		\end{qlist}
+
+	\end{qparts}
+
+	\question{問2}
+	以下の語句を説明せよ．
+	\begin{qlist}
+		\qitem 電位係数
+		\qitem 伝導電流と対流電流
+		\qitem 磁区と磁壁
+	\end{qlist}
+	
+	\newpage
+	\section*{解答案}
+	\subsection*{問1前半}
+
+	$+q$の電荷から点 P までの距離を $r_1$，$-q$の電荷から点 P までの距離を
+	$r_2$とする．すると，点P での電位 $V_p$は次で計算される．
+	\[V_p = \frac{q}{4\pi\varepsilon_0}
+	\left( \frac{1}{r_1} - \frac{1}{r_2}\right)\]
+	
+	余弦定理を使うことで $r_1, r_2$を計算することができる．
+	\begin{align*}
+		r_1 &= \sqrt{
+		r^2 - 2r\cdot \frac{\delta}{2}\cos\theta + \left( \frac{\delta}{2}\right)^2}\\
+		r_2 &= \sqrt{
+		r^2 - 2r\cdot \frac{\delta}{2}\cos(\pi-\theta) + \left( \frac{\delta}{2}\right)^2}
+	\end{align*}
+	これらに対して近似計算を進める．
+	\begin{align*}
+		\frac{1}{r_1} &\approx \frac{1}{r}
+		\left( 1 - \frac{\delta}{r}\cos\theta \right)^{-1/2}\\
+			&\approx \frac{1}{r}\left( 1 + \frac{\delta}{2r}\cos\theta \right)\\
+		\frac{1}{r_2} 
+			&\approx \frac{1}{r}\left( 1 + \frac{\delta}{2r}\cos(\pi-\theta) \right)\\
+	\end{align*}
+	これにより $V_p$は次のように計算され答えとなる．
+	\begin{align*}
+		V_p &= \frac{q}{4\pi\varepsilon_0}
+		\left[ \frac{1}{r}\left( 1 + \frac{\delta}{2r}\cos\theta \right) 
+			- \frac{1}{r}\left( 1 + \frac{\delta}{2r}\cos(\pi-\theta) \right)
+		\right]\\
+			&= \frac{q\delta\cos\theta}{4\pi\varepsilon_0r^2}
+	\end{align*}
+
+	電位 $\bm{E}_p$は次で計算される．
+	\begin{align*}
+		\bm{E}_p
+		&= -\nabla\cdot V_p\\
+		&= \frac{q\delta\cos\theta}{2\pi\varepsilon_0r^3} \bm{e}_r 
+		+ \frac{q\delta\sin\theta}{4\pi\varepsilon_0r^3} \bm{e}_\theta
+	\end{align*}
+
+	向きを $-q$の電荷から $+q$の方向，大きさを $q\delta$とするベクトル
+	$\bm{m}=(0, 0, q\delta)$を
+	とると，電位 $V_p$は次のように表される． $\bm{r}$は点 P の位置ベクトルである．
+	\[V_p = \frac{\bm{m}\cdot\bm{r}}{4\pi\varepsilon_0r^3}\]
+	また，電界は次のようになる．
+	\begin{align*}
+		\bm{E}_p
+		&= -\nabla\cdot V_p\\
+		&= \frac{m\cos\theta}{2\pi\varepsilon_0r^3} \bm{e}_r 
+		+ \frac{m\sin\theta}{4\pi\varepsilon_0r^3} \bm{e}_\theta
+	\end{align*}
+
+	ベクトル $\bm{m}$は電気双極子モーメントである．
+	
+
+	\subsection*{問1後半}
+	導体球を取り除き，電界と同じ向き，大きさ $m$の電気双極子モーメントを原点に
+	仮想する．
+	先の問題の結果より，影像双極子によって生じる点 Q での電界 $\bm{E}_m$
+	は次のようになる．
+	\[\bm{E}_m =\frac{m\cos\theta}{2\pi\varepsilon_0r^3} \bm{e}_r 
+		+ \frac{m\sin\theta}{4\pi\varepsilon_0r^3} \bm{e}_\theta \]
+	また，元からある電界 $\bm{E}$は次のように分解される．
+	\[\bm{E} = E_0\cos\theta\bm{e}_r + -E_0\sin\theta\bm{e}_\theta\]
+	求める電界 $\bm{E}_q$はこれらの和として計算される．
+	\[\bm{E}_q
+	= \left( E_0\cos\theta +\frac{m\cos\theta}{2\pi\varepsilon_0r^3} \right)\bm{e}_r
+	+\left( -E_0\sin\theta +\frac{m\sin\theta}{4\pi\varepsilon_0r^3} \right)\bm{e}_\theta \]
+
+	境界条件は導体の表面の電位が一定であることから与えられる．
+	すなわち，導体表面 $r=a$では球面の接線方向の電界が0である．
+	\begin{align*}
+		&-E_0\sin\theta +\frac{m\sin\theta}{4\pi\varepsilon_0a^3}=0\\
+		&\therefore m=4\pi\varepsilon_0a^3 E_0
+	\end{align*}
+
+	これにより，適当な影像双極子は向きが電界と同じで大きさが
+	$4\pi\varepsilon_0a^3 E_0$の電気双極子モーメントであることがわかった．
+
+	そして電界は次のようになる．
+	\[\bm{E}_q
+	= E_0\left( 1+ \frac{2a^3}{r^3} \right)\bm{e}_r
+	+-E_0\left(1- \frac{a^3}{r^3} \right)\bm{e}_\theta \]
+
+	\newpage
+	\section*{問2}
+	\begin{description}
+		\item[電位係数] 複数の導体が他の影響を受けない状態で存在するとき，
+			その中の1つの導体の電位は他の導体の持つ電荷の線型結合で
+			与えられる．電位係数はこの線型結合で用いる係数のことで，
+			複数導体の幾何条件のみから与えられる．
+		\item [伝導電流と対流電流] 伝導電流とは，電界によって電子が導体内を
+			移動することで発生する電流である．
+			対流電流とは，電界によって電荷を持つイオンなどの粒子が移動することで
+			発生する電流である．
+		\item [磁区と磁壁] 強磁性体内は，磁気モーメントがまとまって同じ
+			向きとなっている領域が複数含まれる状態になっている．
+			この一つの領域を磁区と呼び，2つの磁区を隔てる境界を磁壁と呼ぶ．
+	\end{description}
+	
+
+\end{document}
